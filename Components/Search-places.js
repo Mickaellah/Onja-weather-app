@@ -1,12 +1,18 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import { Context } from '../Context'
+
 import location from '../icons/my_location-24px.svg'
 
 function Search() {
+    const {query, setQuery} = useContext(Context);
+
     return (
-        <form>
-            <input type="text" placeholder="Searche for places" />
-            <button type="button"><img src={location} alt="location" /></button>
-        </form>
+        <>
+            <form>
+                <input type="text" value={query} onChange={ (e) => setQuery(e.target.value)} placeholder="Searche for places" />
+                <button type="submit"><img src={location} alt="location" /></button>
+            </form>
+        </>
     )
 }
 

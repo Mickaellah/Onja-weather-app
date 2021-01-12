@@ -1,2 +1,17 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    color: white;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
 
 /*# sourceMappingURL=/styles.8986bff4.css.map */
