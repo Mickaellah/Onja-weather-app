@@ -8,12 +8,9 @@ export default function Location() {
 
     const weatherToday = !loading && weather && weather.consolidated_weather[0];
     console.log(weatherToday);
-    const nextWeather = !loading && weather && weather.consolidated_weather[1];
-    console.log(nextWeather);
-    const weather3 = !loading && weather && weather.consolidated_weather[2];
-    const weather4 = !loading && weather && weather.consolidated_weather[3];
-    const weather5 = !loading && weather && weather.consolidated_weather[4];
-    const weather6 = !loading && weather && weather.consolidated_weather[5];
+
+    const weatherDuringTheWeek = !loading && weather && weather.consolidated_weather.slice(1, 7);
+    console.log(weatherDuringTheWeek);
 
     return (
         <div>
@@ -33,46 +30,18 @@ export default function Location() {
                     </article>
                     <article className="future_weather">
                         <ul className="weather_list">
-                            <li>
-                                <p>{new Date(nextWeather.applicable_date).toDateString()}</p>
-                                <img className="weather_icon" src={`https://www.metaweather.com//static/img/weather/${nextWeather.weather_state_abbr}.svg`} alt="weather icon" />
-                                <div className="temperature">
-                                    <p>{Math.round(nextWeather.max_temp)}&deg;C</p>
-                                    <p>{Math.round(nextWeather.min_temp)}&deg;C</p>
-                                </div>
-                            </li>
-                            <li>
-                                <p>{new Date(weather3.applicable_date).toDateString()}</p>
-                                <img className="weather_icon" src={`https://www.metaweather.com//static/img/weather/${weather3.weather_state_abbr}.svg`} alt="weather icon" />
-                                <div className="temperature">
-                                    <p>{Math.round(weather3.max_temp)}&deg;C</p>
-                                    <p>{Math.round(weather3.min_temp)}&deg;C</p>
-                                </div>
-                            </li>
-                            <li>
-                                <p>{new Date(weather4.applicable_date).toDateString()}</p>
-                                <img className="weather_icon" src={`https://www.metaweather.com//static/img/weather/${weather4.weather_state_abbr}.svg`} alt="weather icon" />
-                                <div className="temperature">
-                                    <p>{Math.round(weather4.max_temp)}&deg;C</p>
-                                    <p>{Math.round(weather4.min_temp)}&deg;C</p>
-                                </div>
-                            </li>
-                            <li>
-                                <p>{new Date(weather5.applicable_date).toDateString()}</p>
-                                <img className="weather_icon" src={`https://www.metaweather.com//static/img/weather/${weather5.weather_state_abbr}.svg`} alt="weather icon" />
-                                <div className="temperature">
-                                    <p>{Math.round(weather5.max_temp)}&deg;C</p>
-                                    <p>{Math.round(weather5.min_temp)}&deg;C</p>
-                                </div>
-                            </li>
-                            <li>
-                                <p>{new Date(weather6.applicable_date).toDateString()}</p>
-                                <img className="weather_icon" src={`https://www.metaweather.com//static/img/weather/${weather6.weather_state_abbr}.svg`} alt="weather icon" />
-                                <div className="temperature">
-                                    <p>{Math.round(weather6.max_temp)}&deg;C</p>
-                                    <p>{Math.round(weather6.min_temp)}&deg;C</p>
-                                </div>
-                            </li>
+                            {weatherDuringTheWeek.map(weather => {
+                                return (
+                                    <li key={weather.id}>
+                                        <p>{new Date(weather.applicable_date).toDateString()}</p>
+                                        <img className="weather_icon" src={`https://www.metaweather.com//static/img/weather/${weather.weather_state_abbr}.svg`} alt="weather icon" />
+                                        <div className="temperature">
+                                            <p>{Math.round(weather.max_temp)}&deg;C</p>
+                                            <p>{Math.round(weather.min_temp)}&deg;C</p>
+                                        </div>
+                                    </li>
+                                )
+                            })}
                         </ul>
 
                         <div>
@@ -82,7 +51,7 @@ export default function Location() {
                                     <li className="list_item">
                                         <p>Wind Status</p>
                                         <h2>{Math.round(weatherToday.wind_speed)}&deg;C</h2>
-                                        <p>{Math.round(weatherToday.wind_direction_compass)}</p>
+                                        <p>{weatherToday.wind_direction_compass}</p>
                                     </li>
                                     <li className="list_item">
                                         <p>Humidity</p>
