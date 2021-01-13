@@ -10,7 +10,7 @@ function Search() {
         <>
             <form>
                 <input type="text" value={query} onChange={ (e) => setQuery(e.target.value)} placeholder="Searche for places" />
-                <button type="submit"><img src={location} alt="location" /></button>
+                <img src={location} alt="location" />
             </form>
         </>
     )

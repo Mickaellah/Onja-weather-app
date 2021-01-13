@@ -9,6 +9,26 @@ h2 {
     font-size: 32px;
 }
 
+form {
+    margin: 16px;
+    display: flex;
+}
+
+input {
+    background-color: #6e7074;
+}
+
+::placeholder {
+    color: white;
+}
+
+form > img {
+    margin-inline-start: 80px;
+    background-color: #6e7074;
+    padding: 8px;
+    border-radius: 50%;
+}
+
 ul {
     margin: 0;
     padding: 0;
@@ -23,8 +43,8 @@ ul {
     width: 200px;
 }
 
-img {
-    width: 100%;
+li > img {
+    max-width: 150px;
 }
 
 li {
@@ -102,6 +122,18 @@ h3 {
         grid-template-columns: repeat(2, 1fr);
         grid-column-gap: 20px;
         column-gap: 20px;
+    }
+
+    h3 {
+        margin-block-start: 50%;
+    }
+    
+    .weather_name {
+        margin-block-start: 50%;
+    }
+    
+    .weather_location {
+        margin-block-start: 50%;
     }
 
     .lowest_humidity {
