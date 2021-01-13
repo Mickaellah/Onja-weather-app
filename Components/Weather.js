@@ -21,7 +21,7 @@ export default function Location() {
             {!state.loading && state.weather && (
                 <section>
                     <article className="current_weather">
-                        <img src={`https://www.metaweather.com//static/img/weather/${weatherToday.weather_state_abbr}.svg`} alt="weather icon" />
+                        <img className="today_icon" src={`https://www.metaweather.com//static/img/weather/${weatherToday.weather_state_abbr}.svg`} alt="weather icon" />
                         <h3>{weatherToday.the_temp}&deg;C</h3>
                         <p className="weather_name">{weatherToday.weather_state_name}</p>
                         <div className="weather_location">

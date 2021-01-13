@@ -29945,6 +29945,7 @@ function Location() {
   return /*#__PURE__*/_react.default.createElement("div", null, state.loading && /*#__PURE__*/_react.default.createElement("h2", null, "Loading..."), !state.loading && state.weather && /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("article", {
     className: "current_weather"
   }, /*#__PURE__*/_react.default.createElement("img", {
+    className: "today_icon",
     src: "https://www.metaweather.com//static/img/weather/".concat(weatherToday.weather_state_abbr, ".svg"),
     alt: "weather icon"
   }), /*#__PURE__*/_react.default.createElement("h3", null, weatherToday.the_temp, "\xB0C"), /*#__PURE__*/_react.default.createElement("p", {
