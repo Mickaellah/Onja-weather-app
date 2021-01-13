@@ -1,13 +1,13 @@
 import React from "react"
 
 import Search from "./Components/Search-places"
-import Location from "./Components/Location"
+import Weather from "./Components/Weather"
 
 function App() {
     return (
         <>
             <Search />
-            <Location />
+            <Weather />
         </>
     )
 }

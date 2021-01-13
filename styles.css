@@ -5,11 +5,76 @@ body {
     color: white;
 }
 
+h2 {
+    font-size: 32px;
+}
+
 ul {
     margin: 0;
     padding: 0;
 }
 
+.weather_list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.future_weather {
+    grid-column: 2 / 4;
+}
+
+.weather_icon {
+    width: 100%;
+}
+
 li {
     list-style: none;
+    padding: 16px;
+    margin: 16px;
+    background-color: #1E213A;
+}
+
+.weather_today {
+    text-align: center;
+}
+
+.humidity_percentage {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.lowest_humidity {
+    margin-inline-start: 32px;
+}
+
+.highest_humidity {
+    margin-inline-end: 40px;
+}
+
+
+.temperature {
+    display: flex;
+    justify-content: space-between;
+}
+
+section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 20px;
+    column-gap: 20px;
+}
+
+.current_weather {
+    background-color: #1E213A;
+    padding: 16px;
+    margin: 16px;
+    text-align: center;
+    grid-column: 1 / 2;
+}
+
+.weather_today {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 20px;
+    column-gap: 20px;
 }

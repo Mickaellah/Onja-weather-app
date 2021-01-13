@@ -5,7 +5,7 @@ function reducer(state, action) {
         case "LOADING": {
             return {
                 ...state,
-                data: action.data,
+                weather: action.weather,
                 loading: false
             }
         }
@@ -19,7 +19,6 @@ export default function ContextProvider({children}) {
     const [ query, setQuery ] = useState('');
     const initialeState = {
         loading: true,
-        data: [],
         weather: []
     }
 
@@ -38,7 +37,7 @@ export default function ContextProvider({children}) {
         })
         .then(response => response.json())
         .then(data => {
-            dispatch({type: "LOADING", data: data});
+            dispatch({type: "LOADING", weather: data});
         });
     }, []);
     return (
