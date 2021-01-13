@@ -29944,7 +29944,7 @@ function Location() {
   console.log(weatherToday);
   var weatherDuringTheWeek = !loading && weather && weather.consolidated_weather.slice(1, 7);
   console.log(weatherDuringTheWeek);
-  return /*#__PURE__*/_react.default.createElement("div", null, state.loading && /*#__PURE__*/_react.default.createElement("h2", null, "Loading..."), !state.loading && state.weather && /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("article", {
+  return /*#__PURE__*/_react.default.createElement("div", null, loading && /*#__PURE__*/_react.default.createElement("h1", null, "Loading..."), !loading && weather && /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("article", {
     className: "current_weather"
   }, /*#__PURE__*/_react.default.createElement("img", {
     className: "today_icon",
