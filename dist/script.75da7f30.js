@@ -29936,26 +29936,56 @@ function Location() {
       loading = state.loading;
   var weatherToday = !loading && weather && weather.consolidated_weather[0];
   console.log(weatherToday);
+  var nextWeather = !loading && weather && weather.consolidated_weather[1];
+  console.log(nextWeather);
+  var weather3 = !loading && weather && weather.consolidated_weather[2];
+  var weather4 = !loading && weather && weather.consolidated_weather[3];
+  var weather5 = !loading && weather && weather.consolidated_weather[4];
+  var weather6 = !loading && weather && weather.consolidated_weather[5];
   return /*#__PURE__*/_react.default.createElement("div", null, state.loading && /*#__PURE__*/_react.default.createElement("h2", null, "Loading..."), !state.loading && state.weather && /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("article", {
     className: "current_weather"
   }, /*#__PURE__*/_react.default.createElement("img", {
     src: "https://www.metaweather.com//static/img/weather/".concat(weatherToday.weather_state_abbr, ".svg"),
     alt: "weather icon"
-  }), /*#__PURE__*/_react.default.createElement("h3", null, weatherToday.the_temp, "\xB0C"), /*#__PURE__*/_react.default.createElement("p", null, weatherToday.weather_state_name), /*#__PURE__*/_react.default.createElement("p", null, "Today, ", new Date(weather.time).toDateString()), /*#__PURE__*/_react.default.createElement("p", null, weather.title)), /*#__PURE__*/_react.default.createElement("article", {
+  }), /*#__PURE__*/_react.default.createElement("h3", null, weatherToday.the_temp, "\xB0C"), /*#__PURE__*/_react.default.createElement("p", {
+    className: "weather_name"
+  }, weatherToday.weather_state_name), /*#__PURE__*/_react.default.createElement("div", {
+    className: "weather_location"
+  }, /*#__PURE__*/_react.default.createElement("p", null, "Today, ", new Date(weather.time).toDateString()), /*#__PURE__*/_react.default.createElement("p", null, weather.title))), /*#__PURE__*/_react.default.createElement("article", {
     className: "future_weather"
   }, /*#__PURE__*/_react.default.createElement("ul", {
     className: "weather_list"
-  }, weather.consolidated_weather.map(function (weather) {
-    return /*#__PURE__*/_react.default.createElement("li", {
-      key: weather.id
-    }, /*#__PURE__*/_react.default.createElement("p", null, new Date(weather.applicable_date).toDateString()), /*#__PURE__*/_react.default.createElement("img", {
-      className: "weather_icon",
-      src: "https://www.metaweather.com//static/img/weather/".concat(weather.weather_state_abbr, ".svg"),
-      alt: "weather icon"
-    }), /*#__PURE__*/_react.default.createElement("div", {
-      className: "temperature"
-    }, /*#__PURE__*/_react.default.createElement("p", null, weather.max_temp, "\xB0C"), /*#__PURE__*/_react.default.createElement("p", null, weather.min_temp, "\xB0C")));
-  })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h2", null, "Today's Highlight"), /*#__PURE__*/_react.default.createElement("nav", null, /*#__PURE__*/_react.default.createElement("ul", {
+  }, /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("p", null, new Date(nextWeather.applicable_date).toDateString()), /*#__PURE__*/_react.default.createElement("img", {
+    className: "weather_icon",
+    src: "https://www.metaweather.com//static/img/weather/".concat(nextWeather.weather_state_abbr, ".svg"),
+    alt: "weather icon"
+  }), /*#__PURE__*/_react.default.createElement("div", {
+    className: "temperature"
+  }, /*#__PURE__*/_react.default.createElement("p", null, nextWeather.max_temp, "\xB0C"), /*#__PURE__*/_react.default.createElement("p", null, nextWeather.min_temp, "\xB0C"))), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("p", null, new Date(weather3.applicable_date).toDateString()), /*#__PURE__*/_react.default.createElement("img", {
+    className: "weather_icon",
+    src: "https://www.metaweather.com//static/img/weather/".concat(weather3.weather_state_abbr, ".svg"),
+    alt: "weather icon"
+  }), /*#__PURE__*/_react.default.createElement("div", {
+    className: "temperature"
+  }, /*#__PURE__*/_react.default.createElement("p", null, weather3.max_temp, "\xB0C"), /*#__PURE__*/_react.default.createElement("p", null, weather3.min_temp, "\xB0C"))), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("p", null, new Date(weather4.applicable_date).toDateString()), /*#__PURE__*/_react.default.createElement("img", {
+    className: "weather_icon",
+    src: "https://www.metaweather.com//static/img/weather/".concat(weather4.weather_state_abbr, ".svg"),
+    alt: "weather icon"
+  }), /*#__PURE__*/_react.default.createElement("div", {
+    className: "temperature"
+  }, /*#__PURE__*/_react.default.createElement("p", null, weather4.max_temp, "\xB0C"), /*#__PURE__*/_react.default.createElement("p", null, weather4.min_temp, "\xB0C"))), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("p", null, new Date(weather5.applicable_date).toDateString()), /*#__PURE__*/_react.default.createElement("img", {
+    className: "weather_icon",
+    src: "https://www.metaweather.com//static/img/weather/".concat(weather5.weather_state_abbr, ".svg"),
+    alt: "weather icon"
+  }), /*#__PURE__*/_react.default.createElement("div", {
+    className: "temperature"
+  }, /*#__PURE__*/_react.default.createElement("p", null, weather5.max_temp, "\xB0C"), /*#__PURE__*/_react.default.createElement("p", null, weather5.min_temp, "\xB0C"))), /*#__PURE__*/_react.default.createElement("li", null, /*#__PURE__*/_react.default.createElement("p", null, new Date(weather6.applicable_date).toDateString()), /*#__PURE__*/_react.default.createElement("img", {
+    className: "weather_icon",
+    src: "https://www.metaweather.com//static/img/weather/".concat(weather6.weather_state_abbr, ".svg"),
+    alt: "weather icon"
+  }), /*#__PURE__*/_react.default.createElement("div", {
+    className: "temperature"
+  }, /*#__PURE__*/_react.default.createElement("p", null, weather6.max_temp, "\xB0C"), /*#__PURE__*/_react.default.createElement("p", null, weather6.min_temp, "\xB0C")))), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h2", null, "Today's Highlight"), /*#__PURE__*/_react.default.createElement("nav", null, /*#__PURE__*/_react.default.createElement("ul", {
     className: "weather_today"
   }, /*#__PURE__*/_react.default.createElement("li", {
     className: "list_item"

@@ -8,6 +8,12 @@ export default function Location() {
 
     const weatherToday = !loading && weather && weather.consolidated_weather[0];
     console.log(weatherToday);
+    const nextWeather = !loading && weather && weather.consolidated_weather[1];
+    console.log(nextWeather);
+    const weather3 = !loading && weather && weather.consolidated_weather[2];
+    const weather4 = !loading && weather && weather.consolidated_weather[3];
+    const weather5 = !loading && weather && weather.consolidated_weather[4];
+    const weather6 = !loading && weather && weather.consolidated_weather[5];
 
     return (
         <div>
@@ -17,27 +23,56 @@ export default function Location() {
                     <article className="current_weather">
                         <img src={`https://www.metaweather.com//static/img/weather/${weatherToday.weather_state_abbr}.svg`} alt="weather icon" />
                         <h3>{weatherToday.the_temp}&deg;C</h3>
-                        <p>{weatherToday.weather_state_name}</p>
-                        <p>
-                            Today, {new Date(weather.time).toDateString()}
-                        </p>
-                        <p>{weather.title}</p>
+                        <p className="weather_name">{weatherToday.weather_state_name}</p>
+                        <div className="weather_location">
+                            <p>
+                                Today, {new Date(weather.time).toDateString()}
+                            </p>
+                            <p>{weather.title}</p>
+                        </div>
                     </article>
                     <article className="future_weather">
                         <ul className="weather_list">
-                            {weather.consolidated_weather.map(weather => {
-                                return (
-
-                                    <li key={weather.id}>
-                                        <p>{new Date(weather.applicable_date).toDateString()}</p>
-                                        <img className="weather_icon" src={`https://www.metaweather.com//static/img/weather/${weather.weather_state_abbr}.svg`} alt="weather icon" />
-                                        <div className="temperature">
-                                            <p>{weather.max_temp}&deg;C</p>
-                                            <p>{weather.min_temp}&deg;C</p>
-                                        </div>
-                                    </li>
-                                )
-                            })}
+                            <li>
+                                <p>{new Date(nextWeather.applicable_date).toDateString()}</p>
+                                <img className="weather_icon" src={`https://www.metaweather.com//static/img/weather/${nextWeather.weather_state_abbr}.svg`} alt="weather icon" />
+                                <div className="temperature">
+                                    <p>{nextWeather.max_temp}&deg;C</p>
+                                    <p>{nextWeather.min_temp}&deg;C</p>
+                                </div>
+                            </li>
+                            <li>
+                                <p>{new Date(weather3.applicable_date).toDateString()}</p>
+                                <img className="weather_icon" src={`https://www.metaweather.com//static/img/weather/${weather3.weather_state_abbr}.svg`} alt="weather icon" />
+                                <div className="temperature">
+                                    <p>{weather3.max_temp}&deg;C</p>
+                                    <p>{weather3.min_temp}&deg;C</p>
+                                </div>
+                            </li>
+                            <li>
+                                <p>{new Date(weather4.applicable_date).toDateString()}</p>
+                                <img className="weather_icon" src={`https://www.metaweather.com//static/img/weather/${weather4.weather_state_abbr}.svg`} alt="weather icon" />
+                                <div className="temperature">
+                                    <p>{weather4.max_temp}&deg;C</p>
+                                    <p>{weather4.min_temp}&deg;C</p>
+                                </div>
+                            </li>
+                            <li>
+                                <p>{new Date(weather5.applicable_date).toDateString()}</p>
+                                <img className="weather_icon" src={`https://www.metaweather.com//static/img/weather/${weather5.weather_state_abbr}.svg`} alt="weather icon" />
+                                <div className="temperature">
+                                    <p>{weather5.max_temp}&deg;C</p>
+                                    <p>{weather5.min_temp}&deg;C</p>
+                                </div>
+                            </li>
+                            <li>
+                                <p>{new Date(weather6.applicable_date).toDateString()}</p>
+                                <img className="weather_icon" src={`https://www.metaweather.com//static/img/weather/${weather6.weather_state_abbr}.svg`} alt="weather icon" />
+                                <div className="temperature">
+                                    <p>{weather6.max_temp}&deg;C</p>
+                                    <p>{weather6.min_temp}&deg;C</p>
+                                </div>
+                            </li>
                         </ul>
 
                         <div>

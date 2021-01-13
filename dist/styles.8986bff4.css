@@ -70,6 +70,19 @@ section {
     margin: 16px;
     text-align: center;
     grid-column: 1 / 2;
+    overflow: scroll;
+}
+
+h3 {
+    margin-block-start: 50%;
+}
+
+.weather_name {
+    margin-block-start: 50%;
+}
+
+.weather_location {
+    margin-block-start: 50%;
 }
 
 .weather_today {
