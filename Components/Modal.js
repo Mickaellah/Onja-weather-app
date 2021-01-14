@@ -3,9 +3,8 @@ import React, { useContext } from 'react'
 import {Context} from '../Context'
 
 export default function Modal({isOpen, hideModal, query, setQuery}) {
-    const {state} = useContext(Context);
-    const { weather, SearchLocation} = state;
-    console.log(weather);
+    const {state, SearchLocation} = useContext(Context);
+    const { weather} = state;
 
     const showHideModal = isOpen ? "modal display-block" : "modal display-none";
     return (
@@ -18,6 +17,8 @@ export default function Modal({isOpen, hideModal, query, setQuery}) {
                     <input className="places" type="text" value={query} onChange={(e) => setQuery(e.target.value)}  placeholder="Search location" />
                     <button className="submit_modal" type="submit">Search</button>
                 </form>
+
+                <button className="location_name" type="button" onClick={hideModal}>{weather.title}</button>
             </div>
         </section>
     )

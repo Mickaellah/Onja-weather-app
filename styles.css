@@ -182,6 +182,15 @@ h3 {
     display: none;
 }
 
+.location_name {
+    padding-block: 8px;
+    padding-inline: 32px;
+    background-color: #1E213A;
+    color: white;
+    border: 1px solid #e7e7eb;
+    margin-block-start: 32px;
+}
+
 @media (min-width: 750px) {
     section {
         display: grid;

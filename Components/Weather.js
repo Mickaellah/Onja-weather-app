@@ -6,13 +6,9 @@ export default function Location() {
     const {state} = useContext(Context);
     let {weather, loading, location} = state;
 
-    console.log(location);
-
     const weatherToday = !loading && weather && weather.consolidated_weather[0];
-    console.log(weatherToday);
 
     const weatherDuringTheWeek = !loading && weather && weather.consolidated_weather.slice(1, 7);
-    console.log(weatherDuringTheWeek);
 
     return (
         <div>

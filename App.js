@@ -9,14 +9,13 @@ import Modal from "./Components/Modal"
 function App() {
     const [ isOpen, setIsOpen ] = useState(false);
     const {state, query, setQuery} = useContext(Context);
-    const {loading, weather} = state;
 
     function showModal() {
         setIsOpen(!isOpen);
     }
 
     function hideModal() {
-        setIsOpen(isOpen);
+        setIsOpen(!isOpen);
     }
     return (
         <>

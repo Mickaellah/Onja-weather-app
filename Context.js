@@ -22,7 +22,7 @@ function reducer(state, action) {
 const Context = React.createContext();
 
 export default function ContextProvider({children}) {
-    const [ query, setQuery ] = useState('London');
+    const [ query, setQuery ] = useState('San Francisco');
 
     const initialeState = {
         loading: true,
@@ -57,7 +57,6 @@ export default function ContextProvider({children}) {
     function SearchLocation(e) {
         e.preventDefault();
         getWeather();
-
     }
 
     return (

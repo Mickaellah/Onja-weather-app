@@ -29813,7 +29813,7 @@ exports.Context = Context;
 function ContextProvider({
   children
 }) {
-  const [query, setQuery] = (0, _react.useState)('London');
+  const [query, setQuery] = (0, _react.useState)('San Francisco');
   const initialeState = {
     loading: true,
     weather: {},
@@ -29926,11 +29926,8 @@ function Location() {
     loading,
     location
   } = state;
-  console.log(location);
   const weatherToday = !loading && weather && weather.consolidated_weather[0];
-  console.log(weatherToday);
   const weatherDuringTheWeek = !loading && weather && weather.consolidated_weather.slice(1, 7);
-  console.log(weatherDuringTheWeek);
   return /*#__PURE__*/_react.default.createElement("div", null, loading && /*#__PURE__*/_react.default.createElement("h1", null, "Loading..."), !loading && weather && /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("article", {
     className: "current_weather"
   }, /*#__PURE__*/_react.default.createElement("img", {
@@ -30001,13 +29998,12 @@ function Modal({
   setQuery
 }) {
   const {
-    state
+    state,
+    SearchLocation
   } = (0, _react.useContext)(_Context.Context);
   const {
-    weather,
-    SearchLocation
+    weather
   } = state;
-  console.log(weather);
   const showHideModal = isOpen ? "modal display-block" : "modal display-none";
   return /*#__PURE__*/_react.default.createElement("section", {
     className: showHideModal
@@ -30030,7 +30026,11 @@ function Modal({
   }), /*#__PURE__*/_react.default.createElement("button", {
     className: "submit_modal",
     type: "submit"
-  }, "Search"))));
+  }, "Search")), /*#__PURE__*/_react.default.createElement("button", {
+    className: "location_name",
+    type: "button",
+    onClick: hideModal
+  }, weather.title)));
 }
 },{"react":"node_modules/react/index.js","../Context":"Context.js"}],"App.js":[function(require,module,exports) {
 "use strict";
@@ -30063,17 +30063,13 @@ function App() {
     query,
     setQuery
   } = (0, _react.useContext)(_Context.Context);
-  const {
-    loading,
-    weather
-  } = state;
 
   function showModal() {
     setIsOpen(!isOpen);
   }
 
   function hideModal() {
-    setIsOpen(isOpen);
+    setIsOpen(!isOpen);
   }
 
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_SearchPlaces.default, {
