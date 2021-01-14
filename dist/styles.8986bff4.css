@@ -18,15 +18,17 @@ button {
     display: flex;
 }
 
-input {
-    background-color: #6e7074;
-}
-
 .search > img {
     margin-inline-start: 80px;
     background-color: #6e7074;
     padding: 8px;
     border-radius: 50%;
+}
+
+.search > button {
+    color: white;
+    background-color: #6e7074;
+    border: none;
 }
 
 ul {
@@ -133,7 +135,7 @@ h3 {
     left: 0;
     width:100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6);
+    /* background: rgba(0, 0, 0, 0.6); */
 }
 
 .modal-main {
@@ -156,7 +158,7 @@ h3 {
 }
 
 ::placeholder {
-    color: #616475;
+    color: white;
 }
 
 .submit_modal {

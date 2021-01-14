@@ -4,7 +4,9 @@ import {Context} from '../Context'
 
 export default function Location() {
     const {state} = useContext(Context);
-    let {weather, loading} = state;
+    let {weather, loading, location} = state;
+
+    console.log(location);
 
     const weatherToday = !loading && weather && weather.consolidated_weather[0];
     console.log(weatherToday);

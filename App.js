@@ -8,7 +8,7 @@ import Modal from "./Components/Modal"
 
 function App() {
     const [ isOpen, setIsOpen ] = useState(false);
-    const {state} = useContext(Context);
+    const {state, query, setQuery} = useContext(Context);
     const {loading, weather} = state;
 
     function showModal() {
@@ -21,7 +21,7 @@ function App() {
     return (
         <>
             <Search showModal={showModal} />
-            <Modal isOpen={isOpen} hideModal={hideModal} />
+            <Modal isOpen={isOpen} query={query} setQuery={setQuery} hideModal={hideModal} />
             <Weather />
         </>
     )

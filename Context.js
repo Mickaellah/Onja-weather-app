@@ -2,6 +2,12 @@ import React, {useEffect, useReducer, useState} from "react"
 
 function reducer(state, action) {
     switch (action.type) {
+        case "LOCATION": {
+            return {
+                ...state,
+                location: action.location
+            }
+        }
         case "LOADING": {
             return {
                 ...state,
@@ -16,33 +22,46 @@ function reducer(state, action) {
 const Context = React.createContext();
 
 export default function ContextProvider({children}) {
-    const [ query, setQuery ] = useState('');
+    const [ query, setQuery ] = useState('London');
 
     const initialeState = {
         loading: true,
-        weather: []
+        weather: {},
+        location: []
     }
 
     const [ state, dispatch ] = useReducer(reducer, initialeState);
 
-    const CORS = "https://cors-anywhere.herokuapp.com/";
-    const API = "https://www.metaweather.com//api/location/44418/";
+    const CORS = "https://cors-anywhere.herokuapp.com/";    
+    const LOCATION_SEARCH = `https://www.metaweather.com//api/location/search/?query=${query}`;
+
+
+    async function getWeather() {
+        const response = await fetch(CORS + LOCATION_SEARCH);
+        const data = await response.json();
+        dispatch({type: "LOCATION", location: data});
+
+
+        if (data.length) {
+            const API = `https://www.metaweather.com//api/location/${data[0].woeid}/`;
+            const res = await fetch(CORS + API);
+            const weather = await res.json();
+            dispatch({type: "LOADING", weather: weather});
+        }
+    }
 
     useEffect(() => {
-        dispatch({type: "LOADING"})
-        fetch(CORS + API, {
-            headers : {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            dispatch({type: "LOADING", weather: data});
-        });
+        getWeather();
     }, []);
+
+    function SearchLocation(e) {
+        e.preventDefault();
+        getWeather();
+
+    }
+
     return (
-        <Context.Provider value={{state, dispatch, query, setQuery}}>
+        <Context.Provider value={{state, dispatch, query, setQuery, SearchLocation}}>
             {children}
         </Context.Provider>
     )

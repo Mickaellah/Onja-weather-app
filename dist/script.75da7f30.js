@@ -29787,84 +29787,77 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 function reducer(state, action) {
   switch (action.type) {
+    case "LOCATION":
+      {
+        return { ...state,
+          location: action.location
+        };
+      }
+
     case "LOADING":
       {
-        return _objectSpread(_objectSpread({}, state), {}, {
+        return { ...state,
           weather: action.weather,
           loading: false
-        });
+        };
       }
   }
 }
 
-var Context = _react.default.createContext();
+const Context = _react.default.createContext();
 
 exports.Context = Context;
 
-function ContextProvider(_ref) {
-  var children = _ref.children;
-
-  var _useState = (0, _react.useState)(''),
-      _useState2 = _slicedToArray(_useState, 2),
-      query = _useState2[0],
-      setQuery = _useState2[1];
-
-  var initialeState = {
+function ContextProvider({
+  children
+}) {
+  const [query, setQuery] = (0, _react.useState)('London');
+  const initialeState = {
     loading: true,
-    weather: []
+    weather: {},
+    location: []
   };
+  const [state, dispatch] = (0, _react.useReducer)(reducer, initialeState);
+  const CORS = "https://cors-anywhere.herokuapp.com/";
+  const LOCATION_SEARCH = `https://www.metaweather.com//api/location/search/?query=${query}`;
 
-  var _useReducer = (0, _react.useReducer)(reducer, initialeState),
-      _useReducer2 = _slicedToArray(_useReducer, 2),
-      state = _useReducer2[0],
-      dispatch = _useReducer2[1];
-
-  var CORS = "https://cors-anywhere.herokuapp.com/";
-  var API = "https://www.metaweather.com//api/location/44418/";
-  (0, _react.useEffect)(function () {
+  async function getWeather() {
+    const response = await fetch(CORS + LOCATION_SEARCH);
+    const data = await response.json();
     dispatch({
-      type: "LOADING"
+      type: "LOCATION",
+      location: data
     });
-    fetch(CORS + API, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      }
-    }).then(function (response) {
-      return response.json();
-    }).then(function (data) {
+
+    if (data.length) {
+      const API = `https://www.metaweather.com//api/location/${data[0].woeid}/`;
+      const res = await fetch(CORS + API);
+      const weather = await res.json();
       dispatch({
         type: "LOADING",
-        weather: data
+        weather: weather
       });
-    });
+    }
+  }
+
+  (0, _react.useEffect)(() => {
+    getWeather();
   }, []);
+
+  function SearchLocation(e) {
+    e.preventDefault();
+    getWeather();
+  }
+
   return /*#__PURE__*/_react.default.createElement(Context.Provider, {
     value: {
-      state: state,
-      dispatch: dispatch,
-      query: query,
-      setQuery: setQuery
+      state,
+      dispatch,
+      query,
+      setQuery,
+      SearchLocation
     }
   }, children);
 }
@@ -29878,25 +29871,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _react = _interopRequireWildcard(require("react"));
-
-var _Context = require("../Context");
+var _react = _interopRequireDefault(require("react"));
 
 var _my_location24px = _interopRequireDefault(require("../icons/my_location-24px.svg"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function Search(_ref) {
-  var showModal = _ref.showModal;
-
-  var _useContext = (0, _react.useContext)(_Context.Context),
-      query = _useContext.query,
-      setQuery = _useContext.setQuery;
-
+function Search({
+  showModal
+}) {
   return /*#__PURE__*/_react.default.createElement("section", {
     className: "search_form"
   }, /*#__PURE__*/_react.default.createElement("div", {
@@ -29910,15 +29893,15 @@ function Search(_ref) {
   })), /*#__PURE__*/_react.default.createElement("div", {
     className: "symbol_tranformation"
   }, /*#__PURE__*/_react.default.createElement("button", {
-    type: "submit"
+    type: "button"
   }, "C"), /*#__PURE__*/_react.default.createElement("button", {
-    type: "submit"
+    type: "button"
   }, "F")));
 }
 
 var _default = Search;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","../Context":"Context.js","../icons/my_location-24px.svg":"icons/my_location-24px.svg"}],"Components/Weather.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../icons/my_location-24px.svg":"icons/my_location-24px.svg"}],"Components/Weather.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -29935,20 +29918,24 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function Location() {
-  var _useContext = (0, _react.useContext)(_Context.Context),
-      state = _useContext.state;
-
-  var weather = state.weather,
-      loading = state.loading;
-  var weatherToday = !loading && weather && weather.consolidated_weather[0];
+  const {
+    state
+  } = (0, _react.useContext)(_Context.Context);
+  let {
+    weather,
+    loading,
+    location
+  } = state;
+  console.log(location);
+  const weatherToday = !loading && weather && weather.consolidated_weather[0];
   console.log(weatherToday);
-  var weatherDuringTheWeek = !loading && weather && weather.consolidated_weather.slice(1, 7);
+  const weatherDuringTheWeek = !loading && weather && weather.consolidated_weather.slice(1, 7);
   console.log(weatherDuringTheWeek);
   return /*#__PURE__*/_react.default.createElement("div", null, loading && /*#__PURE__*/_react.default.createElement("h1", null, "Loading..."), !loading && weather && /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("article", {
     className: "current_weather"
   }, /*#__PURE__*/_react.default.createElement("img", {
     className: "today_icon",
-    src: "https://www.metaweather.com//static/img/weather/".concat(weatherToday.weather_state_abbr, ".svg"),
+    src: `https://www.metaweather.com//static/img/weather/${weatherToday.weather_state_abbr}.svg`,
     alt: "weather icon"
   }), /*#__PURE__*/_react.default.createElement("h3", null, Math.round(weatherToday.the_temp), "\xB0C"), /*#__PURE__*/_react.default.createElement("p", {
     className: "weather_name"
@@ -29958,12 +29945,12 @@ function Location() {
     className: "future_weather"
   }, /*#__PURE__*/_react.default.createElement("ul", {
     className: "weather_list"
-  }, weatherDuringTheWeek.map(function (weather) {
+  }, weatherDuringTheWeek.map(weather => {
     return /*#__PURE__*/_react.default.createElement("li", {
       key: weather.id
     }, /*#__PURE__*/_react.default.createElement("p", null, new Date(weather.applicable_date).toDateString()), /*#__PURE__*/_react.default.createElement("img", {
       className: "weather_icon",
-      src: "https://www.metaweather.com//static/img/weather/".concat(weather.weather_state_abbr, ".svg"),
+      src: `https://www.metaweather.com//static/img/weather/${weather.weather_state_abbr}.svg`,
       alt: "weather icon"
     }), /*#__PURE__*/_react.default.createElement("div", {
       className: "temperature"
@@ -29999,14 +29986,29 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = Modal;
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _Context = require("../Context");
 
-function Modal(_ref) {
-  var isOpen = _ref.isOpen,
-      hideModal = _ref.hideModal;
-  var showHideModal = isOpen ? "modal display-block" : "modal display-none";
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function Modal({
+  isOpen,
+  hideModal,
+  query,
+  setQuery
+}) {
+  const {
+    state
+  } = (0, _react.useContext)(_Context.Context);
+  const {
+    weather,
+    SearchLocation
+  } = state;
+  console.log(weather);
+  const showHideModal = isOpen ? "modal display-block" : "modal display-none";
   return /*#__PURE__*/_react.default.createElement("section", {
     className: showHideModal
   }, /*#__PURE__*/_react.default.createElement("div", {
@@ -30017,16 +30019,20 @@ function Modal(_ref) {
     className: "close_modal",
     type: "button",
     onClick: hideModal
-  }, "Close")), /*#__PURE__*/_react.default.createElement("form", null, /*#__PURE__*/_react.default.createElement("input", {
+  }, "Close")), /*#__PURE__*/_react.default.createElement("form", {
+    onSubmit: SearchLocation
+  }, /*#__PURE__*/_react.default.createElement("input", {
     className: "places",
     type: "text",
+    value: query,
+    onChange: e => setQuery(e.target.value),
     placeholder: "Search location"
   }), /*#__PURE__*/_react.default.createElement("button", {
     className: "submit_modal",
     type: "submit"
   }, "Search"))));
 }
-},{"react":"node_modules/react/index.js"}],"App.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../Context":"Context.js"}],"App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -30050,29 +30056,17 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 function App() {
-  var _useState = (0, _react.useState)(false),
-      _useState2 = _slicedToArray(_useState, 2),
-      isOpen = _useState2[0],
-      setIsOpen = _useState2[1];
-
-  var _useContext = (0, _react.useContext)(_Context.Context),
-      state = _useContext.state;
-
-  var loading = state.loading,
-      weather = state.weather;
+  const [isOpen, setIsOpen] = (0, _react.useState)(false);
+  const {
+    state,
+    query,
+    setQuery
+  } = (0, _react.useContext)(_Context.Context);
+  const {
+    loading,
+    weather
+  } = state;
 
   function showModal() {
     setIsOpen(!isOpen);
@@ -30086,6 +30080,8 @@ function App() {
     showModal: showModal
   }), /*#__PURE__*/_react.default.createElement(_Modal.default, {
     isOpen: isOpen,
+    query: query,
+    setQuery: setQuery,
     hideModal: hideModal
   }), /*#__PURE__*/_react.default.createElement(_Weather.default, null));
 }
@@ -30134,7 +30130,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56959" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53878" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
