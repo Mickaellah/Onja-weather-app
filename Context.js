@@ -17,6 +17,7 @@ const Context = React.createContext();
 
 export default function ContextProvider({children}) {
     const [ query, setQuery ] = useState('');
+
     const initialeState = {
         loading: true,
         weather: []

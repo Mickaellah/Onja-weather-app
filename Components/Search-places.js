@@ -3,15 +3,15 @@ import { Context } from '../Context'
 
 import location from '../icons/my_location-24px.svg'
 
-function Search() {
+function Search({showModal}) {
     const {query, setQuery} = useContext(Context);
 
     return (
         <section className="search_form">
-            <form>
-                <input type="text" value={query} onChange={ (e) => setQuery(e.target.value)} placeholder="Searche for places" />
+            <div className="search">
+                <button type='button' onClick={showModal} >Search for places</button>
                 <img src={location} alt="location" />
-            </form>
+            </div>
 
             <div className="symbol_tranformation">
                 <button type="submit">C</button>
