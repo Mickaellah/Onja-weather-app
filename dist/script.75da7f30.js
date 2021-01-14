@@ -29968,7 +29968,9 @@ function Location() {
     }), /*#__PURE__*/_react.default.createElement("div", {
       className: "temperature"
     }, /*#__PURE__*/_react.default.createElement("p", null, Math.round(weather.max_temp), "\xB0C"), /*#__PURE__*/_react.default.createElement("p", null, Math.round(weather.min_temp), "\xB0C")));
-  })), /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h2", null, "Today's Highlight"), /*#__PURE__*/_react.default.createElement("nav", null, /*#__PURE__*/_react.default.createElement("ul", {
+  })), /*#__PURE__*/_react.default.createElement("div", {
+    className: "weather_today_content"
+  }, /*#__PURE__*/_react.default.createElement("h2", null, "Today's Highlight"), /*#__PURE__*/_react.default.createElement("nav", null, /*#__PURE__*/_react.default.createElement("ul", {
     className: "weather_today"
   }, /*#__PURE__*/_react.default.createElement("li", {
     className: "list_item"
@@ -30053,7 +30055,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58469" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56959" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

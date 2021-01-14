@@ -44,7 +44,7 @@ export default function Location() {
                             })}
                         </ul>
 
-                        <div>
+                        <div className="weather_today_content">
                             <h2>Today's Highlight</h2>
                             <nav>
                                 <ul className="weather_today">

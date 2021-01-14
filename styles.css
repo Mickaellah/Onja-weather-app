@@ -41,6 +41,7 @@ ul {
 
 .today_icon {
     width: 200px;
+    margin-block-start: 32px;
 }
 
 li > img {
@@ -56,6 +57,12 @@ li {
 
 .weather_today {
     text-align: center;
+    margin-block-start: 100px;
+}
+
+.weather_today_content > h2 {
+    margin-block-start: 100px;
+    margin-inline-start: 16px;
 }
 
 .humidity_percentage {
