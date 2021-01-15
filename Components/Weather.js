@@ -4,7 +4,7 @@ import MyLocation from '../icons/my_location-24px.svg'
 
 import {Context} from '../Context'
 
-export default function Weather({showModal}) {
+export default function Weather({showModal, isFahrenheit, toCelsius, toFahrenheit}) {
     const {state} = useContext(Context);
     let {weather, loading, location} = state;
 
@@ -23,7 +23,7 @@ export default function Weather({showModal}) {
                             <img src={MyLocation} alt="location" />
                         </div>
                         <img className="today_icon" src={`https://www.metaweather.com//static/img/weather/${weatherToday.weather_state_abbr}.svg`} alt="weather icon" />
-                        <h3>{Math.round(weatherToday.the_temp)}&deg;C</h3>
+                        <h3>{`${Math.round(isFahrenheit ? (weatherToday.the_temp * 9/5) + 32 : weatherToday.the_temp)} ${isFahrenheit ? `\xB0F` : `\xB0C`}`}</h3>
                         <p className="weather_name">{weatherToday.weather_state_name}</p>
                         <div className="weather_location">
                             <p>
@@ -34,8 +34,8 @@ export default function Weather({showModal}) {
                     </article>
                     <article className="future_weather">
                         <div className="symbol_tranformation">
-                            <button type="button">&deg;C</button>
-                            <button type="button">F</button>
+                            <button type="button" onClick={toCelsius}>&deg;C</button>
+                            <button type="button" onClick={toFahrenheit}>&deg;F</button>
                         </div>
                         <ul className="weather_list">
                             {weatherDuringTheWeek.map(weather => {
@@ -44,8 +44,8 @@ export default function Weather({showModal}) {
                                         <p>{new Date(weather.applicable_date).toDateString()}</p>
                                         <img className="weather_icon" src={`https://www.metaweather.com//static/img/weather/${weather.weather_state_abbr}.svg`} alt="weather icon" />
                                         <div className="temperature">
-                                            <p>{Math.round(weather.max_temp)}&deg;C</p>
-                                            <p>{Math.round(weather.min_temp)}&deg;C</p>
+                                            <p>{`${Math.round(isFahrenheit ?  (weather.max_temp * 9/5) + 32 : weather.max_temp)} ${isFahrenheit ? `\xB0F` : `\xB0C` }`}</p>
+                                            <p>{`${Math.round(isFahrenheit ?  (weather.min_temp * 9/5) + 32 : weather.min_temp)} ${isFahrenheit ? `\xB0F` : `\xB0C` }`}</p>
                                         </div>
                                     </li>
                                 )

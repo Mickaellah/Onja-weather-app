@@ -22,7 +22,7 @@ function reducer(state, action) {
 const Context = React.createContext();
 
 export default function ContextProvider({children}) {
-    const [ query, setQuery ] = useState('San Francisco');
+    const [ query, setQuery ] = useState('Columbus');
 
     const initialeState = {
         loading: true,
@@ -39,6 +39,7 @@ export default function ContextProvider({children}) {
     async function getWeather() {
         const response = await fetch(CORS + LOCATION_SEARCH);
         const data = await response.json();
+        console.log(data);
         dispatch({type: "LOCATION", location: data});
 
 

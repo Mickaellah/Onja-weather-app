@@ -29813,7 +29813,7 @@ exports.Context = Context;
 function ContextProvider({
   children
 }) {
-  const [query, setQuery] = (0, _react.useState)('San Francisco');
+  const [query, setQuery] = (0, _react.useState)('Columbus');
   const initialeState = {
     loading: true,
     weather: {},
@@ -29826,6 +29826,7 @@ function ContextProvider({
   async function getWeather() {
     const response = await fetch(CORS + LOCATION_SEARCH);
     const data = await response.json();
+    console.log(data);
     dispatch({
       type: "LOCATION",
       location: data
@@ -29884,7 +29885,10 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function Weather({
-  showModal
+  showModal,
+  isFahrenheit,
+  toCelsius,
+  toFahrenheit
 }) {
   const {
     state
@@ -29910,7 +29914,7 @@ function Weather({
     className: "today_icon",
     src: `https://www.metaweather.com//static/img/weather/${weatherToday.weather_state_abbr}.svg`,
     alt: "weather icon"
-  }), /*#__PURE__*/_react.default.createElement("h3", null, Math.round(weatherToday.the_temp), "\xB0C"), /*#__PURE__*/_react.default.createElement("p", {
+  }), /*#__PURE__*/_react.default.createElement("h3", null, `${Math.round(isFahrenheit ? weatherToday.the_temp * 9 / 5 + 32 : weatherToday.the_temp)} ${isFahrenheit ? `\xB0F` : `\xB0C`}`), /*#__PURE__*/_react.default.createElement("p", {
     className: "weather_name"
   }, weatherToday.weather_state_name), /*#__PURE__*/_react.default.createElement("div", {
     className: "weather_location"
@@ -29919,10 +29923,12 @@ function Weather({
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "symbol_tranformation"
   }, /*#__PURE__*/_react.default.createElement("button", {
-    type: "button"
+    type: "button",
+    onClick: toCelsius
   }, "\xB0C"), /*#__PURE__*/_react.default.createElement("button", {
-    type: "button"
-  }, "F")), /*#__PURE__*/_react.default.createElement("ul", {
+    type: "button",
+    onClick: toFahrenheit
+  }, "\xB0F")), /*#__PURE__*/_react.default.createElement("ul", {
     className: "weather_list"
   }, weatherDuringTheWeek.map(weather => {
     return /*#__PURE__*/_react.default.createElement("li", {
@@ -29933,7 +29939,7 @@ function Weather({
       alt: "weather icon"
     }), /*#__PURE__*/_react.default.createElement("div", {
       className: "temperature"
-    }, /*#__PURE__*/_react.default.createElement("p", null, Math.round(weather.max_temp), "\xB0C"), /*#__PURE__*/_react.default.createElement("p", null, Math.round(weather.min_temp), "\xB0C")));
+    }, /*#__PURE__*/_react.default.createElement("p", null, `${Math.round(isFahrenheit ? weather.max_temp * 9 / 5 + 32 : weather.max_temp)} ${isFahrenheit ? `\xB0F` : `\xB0C`}`), /*#__PURE__*/_react.default.createElement("p", null, `${Math.round(isFahrenheit ? weather.min_temp * 9 / 5 + 32 : weather.min_temp)} ${isFahrenheit ? `\xB0F` : `\xB0C`}`)));
   })), /*#__PURE__*/_react.default.createElement("div", {
     className: "weather_today_content"
   }, /*#__PURE__*/_react.default.createElement("h2", null, "Today's Highlight"), /*#__PURE__*/_react.default.createElement("nav", null, /*#__PURE__*/_react.default.createElement("ul", {
@@ -30051,6 +30057,7 @@ function App() {
     query,
     setQuery
   } = (0, _react.useContext)(_Context.Context);
+  const [isFahrenheit, setIsFahrenheit] = (0, _react.useState)(false);
 
   function showModal() {
     setIsOpen(!isOpen);
@@ -30060,13 +30067,24 @@ function App() {
     setIsOpen(!isOpen);
   }
 
+  function toCelsius() {
+    setIsFahrenheit(false);
+  }
+
+  function toFahrenheit() {
+    setIsFahrenheit(true);
+  }
+
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_Modal.default, {
     isOpen: isOpen,
     query: query,
     setQuery: setQuery,
     hideModal: hideModal
   }), /*#__PURE__*/_react.default.createElement(_Weather.default, {
-    showModal: showModal
+    showModal: showModal,
+    isFahrenheit: isFahrenheit,
+    toCelsius: toCelsius,
+    toFahrenheit: toFahrenheit
   }));
 }
 
@@ -30114,7 +30132,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58275" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63678" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
