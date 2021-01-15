@@ -256,6 +256,7 @@ h3,
 
     .modal-main {
         width: 25%;
+        margin-block-start: 15%;
         transform: translate(-170%, -75%);
     }
 
