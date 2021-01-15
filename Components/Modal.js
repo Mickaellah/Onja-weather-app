@@ -16,7 +16,7 @@ export default function Modal({isOpen, hideModal, query, setQuery}) {
                     <button className="close_modal" type="button" onClick={hideModal} ><img src={Clear} alt="Close the modal" /></button>
                 </div>
                 <form onSubmit={SearchLocation}>
-                    <input className="places" type="text" value={query} onChange={(e) => setQuery(e.target.value)}  placeholder="Search location" />
+                    <input className="places" type="text" name="query" value={query} onChange={(e) => setQuery(e.target.value)}  placeholder="Search location" />
                     <button className="submit_modal" type="submit">Search</button>
                 </form>
 

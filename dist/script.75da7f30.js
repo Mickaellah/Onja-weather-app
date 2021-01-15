@@ -29821,12 +29821,11 @@ function ContextProvider({
   };
   const [state, dispatch] = (0, _react.useReducer)(reducer, initialeState);
   const CORS = "https://cors-anywhere.herokuapp.com/";
-  const LOCATION_SEARCH = `https://www.metaweather.com//api/location/search/?query=${query}`;
+  const LOCATION_SEARCH = `https://www.metaweather.com//api/location/search/?query=${query}`; // A function for fetching data.
 
   async function getWeather() {
     const response = await fetch(CORS + LOCATION_SEARCH);
     const data = await response.json();
-    console.log(data);
     dispatch({
       type: "LOCATION",
       location: data
@@ -29841,11 +29840,12 @@ function ContextProvider({
         weather: weather
       });
     }
-  }
+  } // UseEffect hook for the function above which is used to fecth.
+
 
   (0, _react.useEffect)(() => {
     getWeather();
-  }, []);
+  }, []); // A function for the search form for searching locations.
 
   function SearchLocation(e) {
     e.preventDefault();
@@ -29895,10 +29895,11 @@ function Weather({
   } = (0, _react.useContext)(_Context.Context);
   let {
     weather,
-    loading,
-    location
-  } = state;
-  const weatherToday = !loading && weather && weather.consolidated_weather[0];
+    loading
+  } = state; // To get the weather for today in a specific location.
+
+  const weatherToday = !loading && weather && weather.consolidated_weather[0]; // To get all of the next 5 days' weather.
+
   const weatherDuringTheWeek = !loading && weather && weather.consolidated_weather.slice(1, 7);
   return /*#__PURE__*/_react.default.createElement("div", null, loading && /*#__PURE__*/_react.default.createElement("h1", null, "Loading..."), !loading && weather && /*#__PURE__*/_react.default.createElement("section", null, /*#__PURE__*/_react.default.createElement("article", {
     className: "current_weather"
@@ -30017,6 +30018,7 @@ function Modal({
   }, /*#__PURE__*/_react.default.createElement("input", {
     className: "places",
     type: "text",
+    name: "query",
     value: query,
     onChange: e => setQuery(e.target.value),
     placeholder: "Search location"
@@ -30053,23 +30055,26 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function App() {
   const [isOpen, setIsOpen] = (0, _react.useState)(false);
+  const [isFahrenheit, setIsFahrenheit] = (0, _react.useState)(false);
   const {
     query,
     setQuery
-  } = (0, _react.useContext)(_Context.Context);
-  const [isFahrenheit, setIsFahrenheit] = (0, _react.useState)(false);
+  } = (0, _react.useContext)(_Context.Context); // Open a modal
 
   function showModal() {
     setIsOpen(!isOpen);
-  }
+  } // Close a modal
+
 
   function hideModal() {
     setIsOpen(!isOpen);
-  }
+  } // To convert Fahrenheit to Celsius.
+
 
   function toCelsius() {
     setIsFahrenheit(false);
-  }
+  } // To convert Celsius to Fahrenheit
+
 
   function toFahrenheit() {
     setIsFahrenheit(true);
@@ -30132,7 +30137,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63678" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50888" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

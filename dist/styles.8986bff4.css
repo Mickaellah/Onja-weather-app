@@ -155,7 +155,6 @@ h3,
     top:50%;
     left:50%;
     transform: translate(-50%,-50%);
-    margin-block-start: 15%;
     padding: 32px;
 }
 

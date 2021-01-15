@@ -36,10 +36,10 @@ export default function ContextProvider({children}) {
     const LOCATION_SEARCH = `https://www.metaweather.com//api/location/search/?query=${query}`;
 
 
+    // A function for fetching data.
     async function getWeather() {
         const response = await fetch(CORS + LOCATION_SEARCH);
         const data = await response.json();
-        console.log(data);
         dispatch({type: "LOCATION", location: data});
 
 
@@ -51,10 +51,12 @@ export default function ContextProvider({children}) {
         }
     }
 
+    // UseEffect hook for the function above which is used to fecth.
     useEffect(() => {
         getWeather();
     }, []);
 
+    // A function for the search form for searching locations.
     function SearchLocation(e) {
         e.preventDefault();
         getWeather();

@@ -6,10 +6,12 @@ import {Context} from '../Context'
 
 export default function Weather({showModal, isFahrenheit, toCelsius, toFahrenheit}) {
     const {state} = useContext(Context);
-    let {weather, loading, location} = state;
+    let {weather, loading} = state;
 
+    // To get the weather for today in a specific location.
     const weatherToday = !loading && weather && weather.consolidated_weather[0];
 
+    // To get all of the next 5 days' weather.
     const weatherDuringTheWeek = !loading && weather && weather.consolidated_weather.slice(1, 7);
 
     return (
