@@ -1,8 +1,10 @@
 import React, {useContext} from 'react'
 
+import MyLocation from '../icons/my_location-24px.svg'
+
 import {Context} from '../Context'
 
-export default function Location() {
+export default function Weather({showModal}) {
     const {state} = useContext(Context);
     let {weather, loading, location} = state;
 
@@ -16,6 +18,10 @@ export default function Location() {
             {!loading && weather && (
                 <section>
                     <article className="current_weather">
+                        <div className="search">
+                            <button type='button' onClick={showModal} >Search for places</button>
+                            <img src={MyLocation} alt="location" />
+                        </div>
                         <img className="today_icon" src={`https://www.metaweather.com//static/img/weather/${weatherToday.weather_state_abbr}.svg`} alt="weather icon" />
                         <h3>{Math.round(weatherToday.the_temp)}&deg;C</h3>
                         <p className="weather_name">{weatherToday.weather_state_name}</p>
@@ -27,6 +33,10 @@ export default function Location() {
                         </div>
                     </article>
                     <article className="future_weather">
+                        <div className="symbol_tranformation">
+                            <button type="button">&deg;C</button>
+                            <button type="button">F</button>
+                        </div>
                         <ul className="weather_list">
                             {weatherDuringTheWeek.map(weather => {
                                 return (
