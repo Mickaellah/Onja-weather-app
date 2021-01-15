@@ -2,6 +2,8 @@ import React, { useContext } from 'react'
 
 import {Context} from '../Context'
 
+import Clear from '../icons/clear-24px.svg'
+
 export default function Modal({isOpen, hideModal, query, setQuery}) {
     const {state, SearchLocation} = useContext(Context);
     const { weather} = state;
@@ -11,7 +13,7 @@ export default function Modal({isOpen, hideModal, query, setQuery}) {
         <section className={showHideModal}>
             <div className="modal-main">
                 <div className="close_modal_container">
-                    <button className="close_modal" type="button" onClick={hideModal} >Close</button>
+                    <button className="close_modal" type="button" onClick={hideModal} ><img src={Clear} alt="Close the modal" /></button>
                 </div>
                 <form onSubmit={SearchLocation}>
                     <input className="places" type="text" value={query} onChange={(e) => setQuery(e.target.value)}  placeholder="Search location" />

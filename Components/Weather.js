@@ -58,7 +58,7 @@ export default function Weather({showModal}) {
                                 <ul className="weather_today">
                                     <li className="list_item">
                                         <p>Wind Status</p>
-                                        <h2>{Math.round(weatherToday.wind_speed)}&deg;C</h2>
+                                        <h2>{Math.round(weatherToday.wind_speed)} mph</h2>
                                         <p>{weatherToday.wind_direction_compass}</p>
                                     </li>
                                     <li className="list_item">

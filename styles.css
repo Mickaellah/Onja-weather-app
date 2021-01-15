@@ -1,4 +1,11 @@
+@font-face {
+    font-family: 'Raleway';
+    src: url('./fonts/Raleway-Medium.woff2') format('woff2'),
+        url('./fonts/Raleway-Medium.woff') format('woff');
+}
+
 body {
+    font-family: 'Raleway';
     margin: 0;
     padding: 0;
     background-color: black;
@@ -176,6 +183,11 @@ h3,
     margin-block-end: 15%;
 }
 
+.close_modal {
+    border: none;
+    background-color: transparent;
+}
+
 .display-block {
     display: block;
 }
@@ -209,6 +221,7 @@ h3,
 
     .future_weather {
         grid-column: 2 / 4;
+        margin-block-start: 32px;
     }
 
     .weather_list {

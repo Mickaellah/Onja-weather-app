@@ -29940,7 +29940,7 @@ function Weather({
     className: "weather_today"
   }, /*#__PURE__*/_react.default.createElement("li", {
     className: "list_item"
-  }, /*#__PURE__*/_react.default.createElement("p", null, "Wind Status"), /*#__PURE__*/_react.default.createElement("h2", null, Math.round(weatherToday.wind_speed), "\xB0C"), /*#__PURE__*/_react.default.createElement("p", null, weatherToday.wind_direction_compass)), /*#__PURE__*/_react.default.createElement("li", {
+  }, /*#__PURE__*/_react.default.createElement("p", null, "Wind Status"), /*#__PURE__*/_react.default.createElement("h2", null, Math.round(weatherToday.wind_speed), " mph"), /*#__PURE__*/_react.default.createElement("p", null, weatherToday.wind_direction_compass)), /*#__PURE__*/_react.default.createElement("li", {
     className: "list_item"
   }, /*#__PURE__*/_react.default.createElement("p", null, "Humidity"), /*#__PURE__*/_react.default.createElement("h2", null, weatherToday.humidity, " %"), /*#__PURE__*/_react.default.createElement("div", {
     className: "humidity_percentage"
@@ -29957,7 +29957,9 @@ function Weather({
     className: "list_item"
   }, /*#__PURE__*/_react.default.createElement("p", null, "Air pressure"), /*#__PURE__*/_react.default.createElement("h2", null, Math.round(weatherToday.wind_direction), " mb"))))))));
 }
-},{"react":"node_modules/react/index.js","../icons/my_location-24px.svg":"icons/my_location-24px.svg","../Context":"Context.js"}],"Components/Modal.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../icons/my_location-24px.svg":"icons/my_location-24px.svg","../Context":"Context.js"}],"icons/clear-24px.svg":[function(require,module,exports) {
+module.exports = "/clear-24px.8b6d5774.svg";
+},{}],"Components/Modal.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -29968,6 +29970,10 @@ exports.default = Modal;
 var _react = _interopRequireWildcard(require("react"));
 
 var _Context = require("../Context");
+
+var _clear24px = _interopRequireDefault(require("../icons/clear-24px.svg"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -29997,7 +30003,10 @@ function Modal({
     className: "close_modal",
     type: "button",
     onClick: hideModal
-  }, "Close")), /*#__PURE__*/_react.default.createElement("form", {
+  }, /*#__PURE__*/_react.default.createElement("img", {
+    src: _clear24px.default,
+    alt: "Close the modal"
+  }))), /*#__PURE__*/_react.default.createElement("form", {
     onSubmit: SearchLocation
   }, /*#__PURE__*/_react.default.createElement("input", {
     className: "places",
@@ -30014,7 +30023,7 @@ function Modal({
     onClick: hideModal
   }, weather.title)));
 }
-},{"react":"node_modules/react/index.js","../Context":"Context.js"}],"App.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../Context":"Context.js","../icons/clear-24px.svg":"icons/clear-24px.svg"}],"App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
