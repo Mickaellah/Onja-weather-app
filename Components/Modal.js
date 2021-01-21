@@ -4,9 +4,9 @@ import {Context} from '../Context'
 
 import Clear from '../icons/clear-24px.svg'
 
-export default function Modal({isOpen, hideModal, query, setQuery}) {
+export default function Modal({isOpen, clickLocation, hideModal, query, setQuery}) {
     const {state, SearchLocation} = useContext(Context);
-    const { weather} = state;
+    const { location} = state;
 
     const showHideModal = isOpen ? "modal display-block" : "modal display-none";
     return (
@@ -20,7 +20,13 @@ export default function Modal({isOpen, hideModal, query, setQuery}) {
                     <button className="submit_modal" type="submit">Search</button>
                 </form>
 
-                <button className="location_name" type="button" onClick={hideModal}>{weather.title}</button>
+                {location.map(location => {
+                    return (
+                        <div key={location.id}>
+                            <button className="location_name" type="button" onClick={clickLocation}>{location.title}</button>
+                        </div>
+                    )
+                })}
             </div>
         </section>
     )

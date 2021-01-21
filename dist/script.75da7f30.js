@@ -29858,7 +29858,8 @@ function ContextProvider({
       dispatch,
       query,
       setQuery,
-      SearchLocation
+      SearchLocation,
+      getWeather
     }
   }, children);
 }
@@ -29895,8 +29896,10 @@ function Weather({
   } = (0, _react.useContext)(_Context.Context);
   let {
     weather,
-    loading
-  } = state; // To get the weather for today in a specific location.
+    loading,
+    location
+  } = state; // console.log(location);
+  // To get the weather for today in a specific location.
 
   const weatherToday = !loading && weather && weather.consolidated_weather[0]; // To get all of the next 5 days' weather.
 
@@ -29988,6 +29991,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function Modal({
   isOpen,
+  clickLocation,
   hideModal,
   query,
   setQuery
@@ -29997,7 +30001,7 @@ function Modal({
     SearchLocation
   } = (0, _react.useContext)(_Context.Context);
   const {
-    weather
+    location
   } = state;
   const showHideModal = isOpen ? "modal display-block" : "modal display-none";
   return /*#__PURE__*/_react.default.createElement("section", {
@@ -30025,11 +30029,15 @@ function Modal({
   }), /*#__PURE__*/_react.default.createElement("button", {
     className: "submit_modal",
     type: "submit"
-  }, "Search")), /*#__PURE__*/_react.default.createElement("button", {
-    className: "location_name",
-    type: "button",
-    onClick: hideModal
-  }, weather.title)));
+  }, "Search")), location.map(location => {
+    return /*#__PURE__*/_react.default.createElement("div", {
+      key: location.id
+    }, /*#__PURE__*/_react.default.createElement("button", {
+      className: "location_name",
+      type: "button",
+      onClick: clickLocation
+    }, location.title));
+  })));
 }
 },{"react":"node_modules/react/index.js","../Context":"Context.js","../icons/clear-24px.svg":"icons/clear-24px.svg"}],"App.js":[function(require,module,exports) {
 "use strict";
@@ -30058,7 +30066,8 @@ function App() {
   const [isFahrenheit, setIsFahrenheit] = (0, _react.useState)(false);
   const {
     query,
-    setQuery
+    setQuery,
+    getWeather
   } = (0, _react.useContext)(_Context.Context); // Open a modal
 
   function showModal() {
@@ -30067,6 +30076,12 @@ function App() {
 
 
   function hideModal() {
+    setIsOpen(!isOpen);
+  }
+
+  function clickLocation(e) {
+    e.preventDefault();
+    getWeather();
     setIsOpen(!isOpen);
   } // To convert Fahrenheit to Celsius.
 
@@ -30084,6 +30099,7 @@ function App() {
     isOpen: isOpen,
     query: query,
     setQuery: setQuery,
+    clickLocation: clickLocation,
     hideModal: hideModal
   }), /*#__PURE__*/_react.default.createElement(_Weather.default, {
     showModal: showModal,
@@ -30137,7 +30153,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50888" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49360" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -64,6 +64,10 @@ li {
     background-color: #1E213A;
 }
 
+progress[value]::-webkit-progress-bar {
+    background-color: #ffff00;
+}
+
 .weather_today {
     text-align: center;
     margin-block-start: 100px;
@@ -177,6 +181,11 @@ h3,
     color: white;
 }
 
+.location_name {
+    width: 80%;
+    margin-inline-start: 32px;
+}
+
 .close_modal_container {
     margin-inline-start: 89%;
     margin-block-end: 15%;
@@ -213,6 +222,7 @@ h3,
     }
 
     .current_weather {
+        height: 100vh;
         grid-column: 1 / 2;
         overflow: scroll;
         position: fixed;
@@ -256,8 +266,10 @@ h3,
 
     .modal-main {
         width: 25%;
+        height: 100%;
         margin-block-start: 15%;
         transform: translate(-170%, -75%);
+        overflow: scroll;
     }
 
     .places {

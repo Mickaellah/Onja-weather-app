@@ -6,7 +6,8 @@ import {Context} from '../Context'
 
 export default function Weather({showModal, isFahrenheit, toCelsius, toFahrenheit}) {
     const {state} = useContext(Context);
-    let {weather, loading} = state;
+    let {weather, loading, location} = state;
+    // console.log(location);
 
     // To get the weather for today in a specific location.
     const weatherToday = !loading && weather && weather.consolidated_weather[0];

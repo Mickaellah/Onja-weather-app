@@ -63,7 +63,7 @@ export default function ContextProvider({children}) {
     }
 
     return (
-        <Context.Provider value={{state, dispatch, query, setQuery, SearchLocation}}>
+        <Context.Provider value={{state, dispatch, query, setQuery, SearchLocation, getWeather}}>
             {children}
         </Context.Provider>
     )
