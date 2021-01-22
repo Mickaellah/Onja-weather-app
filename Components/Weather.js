@@ -26,7 +26,9 @@ export default function Weather({showModal, isFahrenheit, toCelsius, toFahrenhei
                             <img src={MyLocation} alt="location" />
                         </div>
                         <img className="today_icon" src={`https://www.metaweather.com//static/img/weather/${weatherToday.weather_state_abbr}.svg`} alt="weather icon" />
-                        <h3>{`${Math.round(isFahrenheit ? (weatherToday.the_temp * 9/5) + 32 : weatherToday.the_temp)} ${isFahrenheit ? `\xB0F` : `\xB0C`}`}</h3>
+                        <div className="today_weather_temp">
+                            {<p>{`${Math.round(isFahrenheit ? (weatherToday.the_temp * 9/5) + 32 : weatherToday.the_temp)}`}</p>} {<small>{`${isFahrenheit ? `\xB0F` : `\xB0C`}`}</small>}
+                        </div>
                         <p className="weather_name">{weatherToday.weather_state_name}</p>
                         <div className="weather_location">
                             <p>
@@ -47,8 +49,12 @@ export default function Weather({showModal, isFahrenheit, toCelsius, toFahrenhei
                                         <p>{new Date(weather.applicable_date).toDateString()}</p>
                                         <img className="weather_icon" src={`https://www.metaweather.com//static/img/weather/${weather.weather_state_abbr}.svg`} alt="weather icon" />
                                         <div className="temperature">
-                                            <p>{`${Math.round(isFahrenheit ?  (weather.max_temp * 9/5) + 32 : weather.max_temp)} ${isFahrenheit ? `\xB0F` : `\xB0C` }`}</p>
-                                            <p>{`${Math.round(isFahrenheit ?  (weather.min_temp * 9/5) + 32 : weather.min_temp)} ${isFahrenheit ? `\xB0F` : `\xB0C` }`}</p>
+                                            <div className="max__temp">
+                                                {<p>{`${Math.round(isFahrenheit ?  (weather.max_temp * 9/5) + 32 : weather.max_temp)}`}</p>} {<small>{`${isFahrenheit ? `\xB0F` : `\xB0C` }`}</small>}
+                                            </div>
+                                            <div className="min__temp">
+                                                {<p>{`${Math.round(isFahrenheit ?  (weather.min_temp * 9/5) + 32 : weather.min_temp)}`}</p>} {<small>{`${isFahrenheit ? `\xB0F` : `\xB0C` }`}</small>}
+                                            </div>
                                         </div>
                                     </li>
                                 )
@@ -61,12 +67,18 @@ export default function Weather({showModal, isFahrenheit, toCelsius, toFahrenhei
                                 <ul className="weather_today">
                                     <li className="list_item">
                                         <p>Wind Status</p>
-                                        <h2>{Math.round(weatherToday.wind_speed)} mph</h2>
+                                        <div className="wind__status">
+                                            <p>{Math.round(weatherToday.wind_speed)}</p>
+                                            <small>mph</small>
+                                        </div>
                                         <p>{weatherToday.wind_direction_compass}</p>
                                     </li>
                                     <li className="list_item">
                                         <p>Humidity</p>
-                                        <h2>{weatherToday.humidity} %</h2>
+                                        <div className="humidity">
+                                            <p>{weatherToday.humidity}</p>
+                                            <span>%</span>
+                                        </div>
                                         <div className="humidity_percentage">
                                             <small className="lowest_humidity">0</small>
                                             <small>50</small>
@@ -77,11 +89,17 @@ export default function Weather({showModal, isFahrenheit, toCelsius, toFahrenhei
                                     </li>
                                     <li className="list_item">
                                         <p>Visibility</p>
-                                        <h2>{Math.round(weatherToday.visibility)} miles</h2>
+                                        <div className="visibility">
+                                            <p>{Math.round(weatherToday.visibility)}</p>
+                                            <small>miles</small>
+                                        </div>
                                     </li>
                                     <li className="list_item">
                                         <p>Air pressure</p>
-                                        <h2>{Math.round(weatherToday.wind_direction)} mb</h2>
+                                        <div className="air__pressure">
+                                            <p>{Math.round(weatherToday.wind_direction)}</p>
+                                            <small>mb</small>
+                                        </div> 
                                     </li>
                                 </ul>
                             </nav>

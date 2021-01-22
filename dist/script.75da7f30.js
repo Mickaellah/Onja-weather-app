@@ -29917,7 +29917,9 @@ function Weather({
     className: "today_icon",
     src: `https://www.metaweather.com//static/img/weather/${weatherToday.weather_state_abbr}.svg`,
     alt: "weather icon"
-  }), /*#__PURE__*/_react.default.createElement("h3", null, `${Math.round(isFahrenheit ? weatherToday.the_temp * 9 / 5 + 32 : weatherToday.the_temp)} ${isFahrenheit ? `\xB0F` : `\xB0C`}`), /*#__PURE__*/_react.default.createElement("p", {
+  }), /*#__PURE__*/_react.default.createElement("div", {
+    className: "today_weather_temp"
+  }, /*#__PURE__*/_react.default.createElement("p", null, `${Math.round(isFahrenheit ? weatherToday.the_temp * 9 / 5 + 32 : weatherToday.the_temp)}`), " ", /*#__PURE__*/_react.default.createElement("small", null, `${isFahrenheit ? `\xB0F` : `\xB0C`}`)), /*#__PURE__*/_react.default.createElement("p", {
     className: "weather_name"
   }, weatherToday.weather_state_name), /*#__PURE__*/_react.default.createElement("div", {
     className: "weather_location"
@@ -29942,16 +29944,24 @@ function Weather({
       alt: "weather icon"
     }), /*#__PURE__*/_react.default.createElement("div", {
       className: "temperature"
-    }, /*#__PURE__*/_react.default.createElement("p", null, `${Math.round(isFahrenheit ? weather.max_temp * 9 / 5 + 32 : weather.max_temp)} ${isFahrenheit ? `\xB0F` : `\xB0C`}`), /*#__PURE__*/_react.default.createElement("p", null, `${Math.round(isFahrenheit ? weather.min_temp * 9 / 5 + 32 : weather.min_temp)} ${isFahrenheit ? `\xB0F` : `\xB0C`}`)));
+    }, /*#__PURE__*/_react.default.createElement("div", {
+      className: "max__temp"
+    }, /*#__PURE__*/_react.default.createElement("p", null, `${Math.round(isFahrenheit ? weather.max_temp * 9 / 5 + 32 : weather.max_temp)}`), " ", /*#__PURE__*/_react.default.createElement("small", null, `${isFahrenheit ? `\xB0F` : `\xB0C`}`)), /*#__PURE__*/_react.default.createElement("div", {
+      className: "min__temp"
+    }, /*#__PURE__*/_react.default.createElement("p", null, `${Math.round(isFahrenheit ? weather.min_temp * 9 / 5 + 32 : weather.min_temp)}`), " ", /*#__PURE__*/_react.default.createElement("small", null, `${isFahrenheit ? `\xB0F` : `\xB0C`}`))));
   })), /*#__PURE__*/_react.default.createElement("div", {
     className: "weather_today_content"
   }, /*#__PURE__*/_react.default.createElement("h2", null, "Today's Highlight"), /*#__PURE__*/_react.default.createElement("nav", null, /*#__PURE__*/_react.default.createElement("ul", {
     className: "weather_today"
   }, /*#__PURE__*/_react.default.createElement("li", {
     className: "list_item"
-  }, /*#__PURE__*/_react.default.createElement("p", null, "Wind Status"), /*#__PURE__*/_react.default.createElement("h2", null, Math.round(weatherToday.wind_speed), " mph"), /*#__PURE__*/_react.default.createElement("p", null, weatherToday.wind_direction_compass)), /*#__PURE__*/_react.default.createElement("li", {
+  }, /*#__PURE__*/_react.default.createElement("p", null, "Wind Status"), /*#__PURE__*/_react.default.createElement("div", {
+    className: "wind__status"
+  }, /*#__PURE__*/_react.default.createElement("p", null, Math.round(weatherToday.wind_speed)), /*#__PURE__*/_react.default.createElement("small", null, "mph")), /*#__PURE__*/_react.default.createElement("p", null, weatherToday.wind_direction_compass)), /*#__PURE__*/_react.default.createElement("li", {
     className: "list_item"
-  }, /*#__PURE__*/_react.default.createElement("p", null, "Humidity"), /*#__PURE__*/_react.default.createElement("h2", null, weatherToday.humidity, " %"), /*#__PURE__*/_react.default.createElement("div", {
+  }, /*#__PURE__*/_react.default.createElement("p", null, "Humidity"), /*#__PURE__*/_react.default.createElement("div", {
+    className: "humidity"
+  }, /*#__PURE__*/_react.default.createElement("p", null, weatherToday.humidity), /*#__PURE__*/_react.default.createElement("span", null, "%")), /*#__PURE__*/_react.default.createElement("div", {
     className: "humidity_percentage"
   }, /*#__PURE__*/_react.default.createElement("small", {
     className: "lowest_humidity"
@@ -29962,9 +29972,13 @@ function Weather({
     max: "100"
   }, weatherToday.humidity, " %"), /*#__PURE__*/_react.default.createElement("span", null, "%")), /*#__PURE__*/_react.default.createElement("li", {
     className: "list_item"
-  }, /*#__PURE__*/_react.default.createElement("p", null, "Visibility"), /*#__PURE__*/_react.default.createElement("h2", null, Math.round(weatherToday.visibility), " miles")), /*#__PURE__*/_react.default.createElement("li", {
+  }, /*#__PURE__*/_react.default.createElement("p", null, "Visibility"), /*#__PURE__*/_react.default.createElement("div", {
+    className: "visibility"
+  }, /*#__PURE__*/_react.default.createElement("p", null, Math.round(weatherToday.visibility)), /*#__PURE__*/_react.default.createElement("small", null, "miles"))), /*#__PURE__*/_react.default.createElement("li", {
     className: "list_item"
-  }, /*#__PURE__*/_react.default.createElement("p", null, "Air pressure"), /*#__PURE__*/_react.default.createElement("h2", null, Math.round(weatherToday.wind_direction), " mb"))))))));
+  }, /*#__PURE__*/_react.default.createElement("p", null, "Air pressure"), /*#__PURE__*/_react.default.createElement("div", {
+    className: "air__pressure"
+  }, /*#__PURE__*/_react.default.createElement("p", null, Math.round(weatherToday.wind_direction)), /*#__PURE__*/_react.default.createElement("small", null, "mb")))))))));
 }
 },{"react":"node_modules/react/index.js","../icons/my_location-24px.svg":"icons/my_location-24px.svg","../Context":"Context.js"}],"icons/clear-24px.svg":[function(require,module,exports) {
 module.exports = "/clear-24px.8b6d5774.svg";
@@ -30144,7 +30158,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50049" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63143" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

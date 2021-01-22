@@ -53,6 +53,60 @@ ul {
     margin-block-start: 32px;
 }
 
+.today_weather_temp {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.today_weather_temp > p {
+    font-size: 98px;
+    line-height: 56.35px;
+}
+
+.today_weather_temp > small {
+    align-self: center;
+    margin-block-start: 40px;
+    font-size: 24px;
+    color: gray;
+}
+
+.temperature {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.max__temp {
+    display: flex;
+    flex-direction: row;
+}
+
+.max__temp > p {
+    font-size: 32px;
+}
+
+.max__temp > small {
+    align-self: center;
+    color: gray;
+    margin-block-start: 12px;
+}
+
+.min__temp {
+    display: flex;
+    flex-direction: row;
+}
+
+.min__temp > p {
+    font-size: 32px;
+}
+
+.min__temp > small {
+    align-self: center;
+    color: gray;
+    margin-block-start: 12px;
+}
+
 li > img {
     max-width: 80px;
 }
@@ -65,6 +119,10 @@ li {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+progress {
+    
 }
 
 progress[value]::-webkit-progress-bar {
@@ -94,10 +152,72 @@ progress[value]::-webkit-progress-bar {
     margin-inline-end: 20%;
 }
 
-
-.temperature {
+.wind__status {
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.wind__status > p {
+    font-size: 60px;
+}
+
+.wind__status > small {
+    align-self: center;
+    font-size: 24px;
+    margin-inline-start: 8px;
+    margin-block-start: 32px;
+}
+
+.humidity {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.humidity > p {
+    font-size: 60px;
+}
+
+.humidity > span {
+    align-self: center;
+    font-size: 24px;
+    margin-inline-start: 8px;
+    margin-block-start: 32px;
+}
+
+.visibility {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.visibility > p {
+    font-size: 60px;
+}
+
+.visibility > small {
+    align-self: center;
+    font-size: 24px;
+    margin-inline-start: 8px;
+    margin-block-start: 32px;
+}
+
+.air__pressure {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.air__pressure > p {
+    font-size: 60px;
+}
+
+.air__pressure > small {
+    align-self: center;
+    font-size: 24px;
+    margin-inline-start: 8px;
+    margin-block-start: 32px;
 }
 
 .current_weather {
