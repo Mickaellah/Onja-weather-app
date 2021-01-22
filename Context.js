@@ -42,13 +42,13 @@ export default function ContextProvider({children}) {
         const data = await response.json();
         dispatch({type: "LOCATION", location: data});
 
-
         if (data.length) {
             const API = `https://www.metaweather.com//api/location/${data[0].woeid}/`;
             const res = await fetch(CORS + API);
             const weather = await res.json();
             dispatch({type: "LOADING", weather: weather});
         }
+
     }
 
     // UseEffect hook for the function above which is used to fecth.
@@ -63,7 +63,7 @@ export default function ContextProvider({children}) {
     }
 
     return (
-        <Context.Provider value={{state, dispatch, query, setQuery, SearchLocation, getWeather}}>
+        <Context.Provider value={{state, dispatch, query, setQuery, SearchLocation}}>
             {children}
         </Context.Provider>
     )

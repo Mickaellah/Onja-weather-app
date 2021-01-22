@@ -29858,8 +29858,7 @@ function ContextProvider({
       dispatch,
       query,
       setQuery,
-      SearchLocation,
-      getWeather
+      SearchLocation
     }
   }, children);
 }
@@ -30066,8 +30065,7 @@ function App() {
   const [isFahrenheit, setIsFahrenheit] = (0, _react.useState)(false);
   const {
     query,
-    setQuery,
-    getWeather
+    setQuery
   } = (0, _react.useContext)(_Context.Context); // Open a modal
 
   function showModal() {
@@ -30076,12 +30074,6 @@ function App() {
 
 
   function hideModal() {
-    setIsOpen(!isOpen);
-  }
-
-  function clickLocation(e) {
-    e.preventDefault();
-    getWeather();
     setIsOpen(!isOpen);
   } // To convert Fahrenheit to Celsius.
 
@@ -30099,7 +30091,6 @@ function App() {
     isOpen: isOpen,
     query: query,
     setQuery: setQuery,
-    clickLocation: clickLocation,
     hideModal: hideModal
   }), /*#__PURE__*/_react.default.createElement(_Weather.default, {
     showModal: showModal,
@@ -30153,7 +30144,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49360" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50049" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
