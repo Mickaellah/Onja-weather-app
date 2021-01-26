@@ -165,6 +165,15 @@ progress[value]::-webkit-progress-bar {
     margin-block-start: 32px;
 }
 
+.wind_compas {
+    display: flex;
+    justify-content: center;
+}
+
+.wind_compas > p {
+    margin-inline-start: 8px;
+} 
+
 .humidity {
     display: flex;
     flex-direction: row;

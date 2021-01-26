@@ -29864,6 +29864,8 @@ function ContextProvider({
 }
 },{"react":"node_modules/react/index.js"}],"icons/my_location-24px.svg":[function(require,module,exports) {
 module.exports = "/my_location-24px.d8e88f5c.svg";
+},{}],"icons/explore-24px.svg":[function(require,module,exports) {
+module.exports = "/explore-24px.bd337b8f.svg";
 },{}],"Components/Weather.js":[function(require,module,exports) {
 "use strict";
 
@@ -29875,6 +29877,8 @@ exports.default = Weather;
 var _react = _interopRequireWildcard(require("react"));
 
 var _my_location24px = _interopRequireDefault(require("../icons/my_location-24px.svg"));
+
+var _explore24px = _interopRequireDefault(require("../icons/explore-24px.svg"));
 
 var _Context = require("../Context");
 
@@ -29957,7 +29961,12 @@ function Weather({
     className: "list_item"
   }, /*#__PURE__*/_react.default.createElement("p", null, "Wind Status"), /*#__PURE__*/_react.default.createElement("div", {
     className: "wind__status"
-  }, /*#__PURE__*/_react.default.createElement("p", null, Math.round(weatherToday.wind_speed)), /*#__PURE__*/_react.default.createElement("small", null, "mph")), /*#__PURE__*/_react.default.createElement("p", null, weatherToday.wind_direction_compass)), /*#__PURE__*/_react.default.createElement("li", {
+  }, /*#__PURE__*/_react.default.createElement("p", null, Math.round(weatherToday.wind_speed)), /*#__PURE__*/_react.default.createElement("small", null, "mph")), /*#__PURE__*/_react.default.createElement("div", {
+    className: "wind_compas"
+  }, /*#__PURE__*/_react.default.createElement("img", {
+    src: _explore24px.default,
+    alt: "wind-compas"
+  }), /*#__PURE__*/_react.default.createElement("p", null, weatherToday.wind_direction_compass))), /*#__PURE__*/_react.default.createElement("li", {
     className: "list_item"
   }, /*#__PURE__*/_react.default.createElement("p", null, "Humidity"), /*#__PURE__*/_react.default.createElement("div", {
     className: "humidity"
@@ -29980,7 +29989,7 @@ function Weather({
     className: "air__pressure"
   }, /*#__PURE__*/_react.default.createElement("p", null, Math.round(weatherToday.wind_direction)), /*#__PURE__*/_react.default.createElement("small", null, "mb")))))))));
 }
-},{"react":"node_modules/react/index.js","../icons/my_location-24px.svg":"icons/my_location-24px.svg","../Context":"Context.js"}],"icons/clear-24px.svg":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../icons/my_location-24px.svg":"icons/my_location-24px.svg","../icons/explore-24px.svg":"icons/explore-24px.svg","../Context":"Context.js"}],"icons/clear-24px.svg":[function(require,module,exports) {
 module.exports = "/clear-24px.8b6d5774.svg";
 },{}],"Components/Modal.js":[function(require,module,exports) {
 "use strict";

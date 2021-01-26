@@ -1,6 +1,7 @@
 import React, {useContext} from 'react'
 
 import MyLocation from '../icons/my_location-24px.svg'
+import WindCompas from '../icons/explore-24px.svg'
 
 import {Context} from '../Context'
 
@@ -71,7 +72,10 @@ export default function Weather({showModal, isFahrenheit, toCelsius, toFahrenhei
                                             <p>{Math.round(weatherToday.wind_speed)}</p>
                                             <small>mph</small>
                                         </div>
-                                        <p>{weatherToday.wind_direction_compass}</p>
+                                        <div  className="wind_compas">
+                                            <img src={WindCompas} alt="wind-compas" />
+                                            <p>{weatherToday.wind_direction_compass}</p>
+                                        </div>
                                     </li>
                                     <li className="list_item">
                                         <p>Humidity</p>
