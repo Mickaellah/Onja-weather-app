@@ -4,7 +4,7 @@ import {Context} from '../Context'
 
 import Clear from '../icons/clear-24px.svg'
 
-export default function Modal({isOpen, clickLocation, hideModal, query, setQuery}) {
+export default function Modal({isOpen, hideModal, query, setQuery}) {
     const {state, SearchLocation} = useContext(Context);
     const { location} = state;
 
@@ -23,7 +23,7 @@ export default function Modal({isOpen, clickLocation, hideModal, query, setQuery
                 {location.map(location => {
                     return (
                         <div key={location.id}>
-                            <button className="location_name" type="button" onClick={clickLocation}>{location.title}</button>
+                            <button className="location_name" type="button" onClick={hideModal}>{location.title}</button>
                         </div>
                     )
                 })}

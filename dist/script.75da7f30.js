@@ -30004,7 +30004,6 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function Modal({
   isOpen,
-  clickLocation,
   hideModal,
   query,
   setQuery
@@ -30048,7 +30047,7 @@ function Modal({
     }, /*#__PURE__*/_react.default.createElement("button", {
       className: "location_name",
       type: "button",
-      onClick: clickLocation
+      onClick: hideModal
     }, location.title));
   })));
 }
@@ -30158,7 +30157,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63143" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52285" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

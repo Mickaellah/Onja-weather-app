@@ -121,10 +121,6 @@ li {
     justify-content: space-between;
 }
 
-progress {
-    
-}
-
 progress[value]::-webkit-progress-bar {
     background-color: #ffff00;
 }
@@ -240,8 +236,8 @@ h3,
 
 .symbol_tranformation {
     margin: 16px;
-    margin-inline-end: 60px;
     display: flex;
+    margin-inline-start: 11%;
     flex-direction: row;
     justify-content: flex-end;
 }
@@ -260,9 +256,24 @@ h3,
     margin-inline-start: 16px;
 }
 
-.symbol_tranformation > button:active {
+.symbol_tranformation > button:active,
+.symbol_tranformation > button:focus {
     background-color: white;
     color: #1E213A;
+}
+
+progress {
+    max-width: 200px;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+}
+
+.lowest_humidity {
+    margin-inline-start: 22%;
+}
+
+.highest_humidity {
+    margin-inline-end: 20%;
 }
 
 .modal {
@@ -369,6 +380,12 @@ h3,
         column-gap: 20px;
     }
 
+    .weather_today_content {
+        max-width: 900px;
+        margin-inline-start: auto;
+        margin-inline-end: auto;
+    }
+
     h3 {
         margin-block-start: 30%;
     }
@@ -381,12 +398,20 @@ h3,
         margin-block-start: 20%;
     }
 
+    .symbol_tranformation {
+        margin-inline-end: 11%;
+    } 
+
+    progress {
+        margin-inline-start: 30%;
+    }
+
     .lowest_humidity {
-        margin-inline-start: 0;
+        margin-inline-start: 15%;
     }
     
     .highest_humidity {
-        margin-inline-end: 0;
+        margin-inline-end: 12%;
     }
 
     .modal-main {
@@ -400,9 +425,6 @@ h3,
     .places {
         width: 53%;
     }
-    
-
-
 }
 
 /*# sourceMappingURL=/styles.8986bff4.css.map */
